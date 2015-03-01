@@ -116,7 +116,7 @@ class OneLogin_Saml2_Response(object):
 
                 # Checks that there is at least one AttributeStatement
                 attribute_statement_nodes = self.__query_assertion('/saml:AttributeStatement')
-                if not attribute_statement_nodes:
+                if security.get('wantAttributeStatement', True) and not attribute_statement_nodes:
                     raise Exception('There is no AttributeStatement on the Response')
 
                 # Validates Asserion timestamps
